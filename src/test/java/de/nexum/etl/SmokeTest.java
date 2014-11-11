@@ -1,4 +1,4 @@
-package nl.retriever.statistics.etl;
+package de.nexum.etl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
