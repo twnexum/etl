@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE etl SYSTEM "http://scriptella.javaforge.com/dtd/etl.dtd">
+<etl>
+	<connection id="spring" driver="spring" url="dataSource" />
+	<connection id="log" driver="text"/>
+	<connection id="groovy" driver="script">language=groovy</connection>
+	<query connection-id="groovy">
+		<![CDATA[			
+			for (i in 0..10) {
+				range = 365			
+				randomInterval = new Random().nextInt(range)			
+			    date = new Date()
+				randomDate = date.plus(randomInterval)			    
+			    sqlDate = randomDate.toTimestamp()
+				counter = i
+				query.next()
+			}		
+		]]>	
+		<script connection-id="spring">
+			INSERT INTO Test (time, value) VALUES (?sqlDate, ?counter);
+		</script>
+	</query>
+	<script connection-id="log">
+		Database table 'Test' populated:
+	</script>
+	<query connection-id="spring">
+		SELECT time,value FROM Test ORDER BY value DESC
+		<script connection-id="log">
+			Date: '$time', value: '$value'
+		</script>
+	</query>
+</etl>

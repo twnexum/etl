@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE etl SYSTEM "http://scriptella.javaforge.com/dtd/etl.dtd">
+<etl>
+	<connection id="spring" driver="spring" url="dataSource" />
+	<connection id="log" driver="text" />
+	<script connection-id="spring">
+		CREATE TABLE Test (time TIMESTAMP, value Decimal);
+	</script>
+	<script connection-id="log">
+		Database table 'Test' created!
+	</script>
+</etl>

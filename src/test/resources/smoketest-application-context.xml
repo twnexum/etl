@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/junit" />
+		<property name="username" value="junit" />
+		<property name="password" value="123456" />
+	</bean>
+
+	<bean id="progress" class="scriptella.interactive.ConsoleProgressIndicator" />
+	
+	<bean id="dropDb" class="scriptella.driver.spring.EtlExecutorBean">
+		<property name="configLocation" value="etl/drop-tables.xml"/>
+		<property name="progressIndicator" ref="progress"/>
+		<property name="autostart" value="true" />
+	</bean>	
+
+	<bean id="createDb" class="scriptella.driver.spring.EtlExecutorBean">
+		<property name="configLocation" value="etl/create-tables.xml"/>
+		<property name="progressIndicator" ref="progress"/>
+		<property name="autostart" value="true" />
+	</bean>
+
+	<bean id="populateDb" class="scriptella.driver.spring.EtlExecutorBean">
+		<property name="configLocation" value="etl/populate-tables.xml"/>
+		<property name="progressIndicator" ref="progress"/>
+	</bean>
+
+</beans>
