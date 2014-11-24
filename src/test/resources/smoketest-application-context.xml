@@ -5,7 +5,7 @@
 
 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/junit" />
+		<property name="url" value="jdbc:mysql://localhost:3306/etl" />
 		<property name="username" value="junit" />
 		<property name="password" value="123456" />
 	</bean>
