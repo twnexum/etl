@@ -1,4 +1,4 @@
-package de.nexum.etl;
+package javax.example.etl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,7 @@ import scriptella.driver.spring.EtlExecutorBean;
 import scriptella.execution.EtlExecutorException;
 
 /**
- * @author <a href="mailto:thomas.weckert@nexum.de">Thomas Weckert</a>
+ * @author Thomas Weckert
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/smoketest-application-context.xml" })
